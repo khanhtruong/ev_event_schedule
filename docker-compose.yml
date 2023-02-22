@@ -1,0 +1,12 @@
+version: "3.5"
+
+services:
+  postgres_db:
+    container_name: event_schedule_db
+    image: postgres:9.4
+    environment:
+      POSTGRES_USER: khanh_admin
+      POSTGRES_PASSWORD: SomeSecretPassword
+      POSTGRES_DB: event_schedule_db
+    ports:
+      - "5432:5432"
