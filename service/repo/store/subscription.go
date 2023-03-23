@@ -31,3 +31,8 @@ func (s *storeImpl) UpdateSubscriptionCalendarID(id string, calendarID string) (
 	subscription := entity.Subscriptions{}
 	return &subscription, s.DB.Model(&subscription).Where("id=?", id).Update("local_event_calendar_id", calendarID).Error
 }
+
+func (s *storeImpl) GetSubscriptions(userID uint) ([]entity.Subscriptions, error) {
+	subscriptions := []entity.Subscriptions{}
+	return subscriptions, s.DB.Preload("EventSession.Event").Where("user_id=?", userID).Find(&subscriptions).Error
+}

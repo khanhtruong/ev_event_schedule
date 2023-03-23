@@ -6,7 +6,7 @@ import (
 
 type Repo interface {
 	// Events
-	GetEvents() ([]entity.Event, error)
+	GetEvents(filters []string, from string, to string) ([]entity.Event, error)
 	GetEvent(id string) (*entity.Event, error)
 
 	// Subscriptions
@@ -16,4 +16,5 @@ type Repo interface {
 	UpdateSubscription(id string, eventSessionID string) (*entity.Subscriptions, error)
 	DeleteSubscription(id string) error
 	UpdateSubscriptionCalendarID(id string, calendarID string) (*entity.Subscriptions, error)
+	GetSubscriptions(userID uint) ([]entity.Subscriptions, error)
 }

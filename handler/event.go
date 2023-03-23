@@ -1,19 +1,31 @@
 package handler
 
 import (
+	"event_schedule/data/dto"
 	"event_schedule/data/entity"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
 func (h *Handler) Events(c *gin.Context) {
-	data, err := h.Repo.GetEvents()
+	filter := c.Query("filter")
+	from := c.Query("from")
+	to := c.Query("to")
+
+	filters := strings.Split(filter, ",")
+	if len(filters) == 0 {
+		filters = entity.ALL_FILTER
+	}
+
+	data, err := h.Repo.GetEvents(filters, from, to)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"message": err.Error(),
+				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
+				"message":    err.Error(),
 			},
 		})
 		return
@@ -29,7 +41,8 @@ func (h *Handler) EventDetails(c *gin.Context) {
 	if eventID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"message": "event_id not found",
+				"error_code": dto.ERR_INVALID_PATH_PARAMS,
+				"message":    "event_id not found",
 			},
 		})
 		return
@@ -39,7 +52,8 @@ func (h *Handler) EventDetails(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"message": err.Error(),
+				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
+				"message":    err.Error(),
 			},
 		})
 		return

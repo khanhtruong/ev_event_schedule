@@ -20,8 +20,8 @@ func NewRepo(cfg *config.Config) Repo {
 	}
 }
 
-func (r *repoImpl) GetEvents() ([]entity.Event, error) {
-	return r.Store.GetEvents()
+func (r *repoImpl) GetEvents(filters []string, from string, to string) ([]entity.Event, error) {
+	return r.Store.GetEvents(filters, from, to)
 }
 
 func (r *repoImpl) GetEvent(id string) (*entity.Event, error) {
@@ -50,4 +50,8 @@ func (r *repoImpl) DeleteSubscription(id string) error {
 
 func (r *repoImpl) UpdateSubscriptionCalendarID(id string, calendarID string) (*entity.Subscriptions, error) {
 	return r.Store.UpdateSubscriptionCalendarID(id, calendarID)
+}
+
+func (r *repoImpl) GetSubscriptions(userID uint) ([]entity.Subscriptions, error) {
+	return r.Store.GetSubscriptions(userID)
 }

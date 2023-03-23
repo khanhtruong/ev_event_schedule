@@ -21,11 +21,14 @@ func main() {
 func MountHandler(r *gin.Engine, config *config.Config) {
 	handler := handler.NewHandler(config)
 
-	r.GET("/events", handler.Events)
-	r.GET("/events/:event_id", handler.EventDetails)
+	// Event handlers
+	r.GET("/event", handler.Events)
+	r.GET("/event/:event_id", handler.EventDetails)
 
-	r.POST("/subscriptions", handler.Subscribe)
-	r.PUT("/subscriptions/:subscription_id", handler.UpdateSubscribe)
-	r.DELETE("/subscriptions/:subscription_id", handler.DeleteSubscribe)
-	r.PUT("/subscriptions/:subscription_id/localcalendar", handler.UpdateSubscribeCalendarID)
+	// Subscription handlers
+	r.POST("/subscription", handler.Subscribe)
+	r.PUT("/subscription/:subscription_id", handler.UpdateSubscribe)
+	r.DELETE("/subscription/:subscription_id", handler.DeleteSubscribe)
+	r.PUT("/subscription/:subscription_id/localcalendar", handler.UpdateSubscribeCalendarID)
+	r.GET("/subscription/event", handler.SubscribedEvents)
 }
