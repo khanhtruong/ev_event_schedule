@@ -5,7 +5,8 @@ type SubscribeDto struct {
 }
 
 type SubscribeDataDto struct {
-	EventSessionID uint `json:"event_session_id"`
+	EventSessionID   uint `json:"event_session_id"`
+	OnNotifyNewEvent bool `json:"on_notify_new_event"`
 }
 
 type SubscribeCalendarIDDto struct {

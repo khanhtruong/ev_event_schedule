@@ -24,8 +24,8 @@ func (h *Handler) Events(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    err.Error(),
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  err.Error(),
 			},
 		})
 		return
@@ -41,8 +41,8 @@ func (h *Handler) EventDetails(c *gin.Context) {
 	if eventID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_PATH_PARAMS,
-				"message":    "event_id not found",
+				"errorCode": dto.ERR_INVALID_PATH_PARAMS,
+				"errorMsg":  "event_id not found",
 			},
 		})
 		return
@@ -52,8 +52,8 @@ func (h *Handler) EventDetails(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    err.Error(),
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  err.Error(),
 			},
 		})
 		return

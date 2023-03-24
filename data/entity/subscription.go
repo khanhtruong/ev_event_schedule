@@ -8,6 +8,7 @@ type Subscriptions struct {
 	EventSessionID       uint               `json:"event_session_id"`
 	LocalEventCalendarID string             `json:"local_event_calendar_id"`
 	Status               ConfirmationStatus `json:"status"`
+	OnNotifyNewEvent     bool               `json:"on_notify_new_event"`
 
 	EventSession EventSession `json:"event_session"`
 }

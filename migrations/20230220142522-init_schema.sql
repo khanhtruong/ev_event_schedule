@@ -32,6 +32,7 @@ CREATE TABLE subscriptions(
 	event_session_id INT,
 	local_event_calendar_id VARCHAR(100),
 	status confirmation_statuses,
+	on_notify_new_event BOOLEAN,
 	FOREIGN KEY (user_id) REFERENCES user_accounts(id),
 	FOREIGN KEY (event_session_id) REFERENCES event_sessions(id)
 );

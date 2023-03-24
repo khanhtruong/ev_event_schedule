@@ -16,8 +16,8 @@ func (h *Handler) Subscribe(c *gin.Context) {
 	if err := c.ShouldBindJSON(&subscribeReq); err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_REQUEST_BODY,
-				"message":    err.Error(),
+				"errorCode": dto.ERR_INVALID_REQUEST_BODY,
+				"errorMsg":  err.Error(),
 			},
 		})
 		return
@@ -27,8 +27,8 @@ func (h *Handler) Subscribe(c *gin.Context) {
 	if userID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "AccessToken is nil, please try again",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "AccessToken is nil, please try again",
 			},
 		})
 		return
@@ -37,8 +37,8 @@ func (h *Handler) Subscribe(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "UserID is not an integer",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "UserID is not an integer",
 			},
 		})
 		return
@@ -55,8 +55,8 @@ func (h *Handler) Subscribe(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    err.Error(),
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  err.Error(),
 			},
 		})
 		return
@@ -66,8 +66,8 @@ func (h *Handler) Subscribe(c *gin.Context) {
 	if sub == nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Insert subcription failed",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Insert subcription failed",
 			},
 		})
 		return
@@ -77,8 +77,8 @@ func (h *Handler) Subscribe(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Fetch subscription failed",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Fetch subscription failed",
 			},
 		})
 		return
@@ -94,8 +94,8 @@ func (h *Handler) UpdateSubscribe(c *gin.Context) {
 	if err := c.ShouldBindJSON(&subscribeReq); err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_REQUEST_BODY,
-				"message":    err.Error(),
+				"errorCode": dto.ERR_INVALID_REQUEST_BODY,
+				"errorMsg":  err.Error(),
 			},
 		})
 		return
@@ -105,8 +105,8 @@ func (h *Handler) UpdateSubscribe(c *gin.Context) {
 	if subscriptionID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_PATH_PARAMS,
-				"message":    "SubscriptionID is nil, please try again",
+				"errorCode": dto.ERR_INVALID_PATH_PARAMS,
+				"errorMsg":  "SubscriptionID is nil, please try again",
 			},
 		})
 		return
@@ -116,8 +116,8 @@ func (h *Handler) UpdateSubscribe(c *gin.Context) {
 	if userID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "AccessToken is nil, please try again",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "AccessToken is nil, please try again",
 			},
 		})
 		return
@@ -126,8 +126,8 @@ func (h *Handler) UpdateSubscribe(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "UserID is not an integer",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "UserID is not an integer",
 			},
 		})
 		return
@@ -140,8 +140,8 @@ func (h *Handler) UpdateSubscribe(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Unable to retreived subscription data",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Unable to retreived subscription data",
 			},
 		})
 		return
@@ -149,8 +149,8 @@ func (h *Handler) UpdateSubscribe(c *gin.Context) {
 	if sub.UserID != uint(uID) {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Subscription not found",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Subscription not found",
 			},
 		})
 		return
@@ -160,8 +160,8 @@ func (h *Handler) UpdateSubscribe(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    err.Error(),
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  err.Error(),
 			},
 		})
 		return
@@ -171,8 +171,8 @@ func (h *Handler) UpdateSubscribe(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Fetch subscription failed",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Fetch subscription failed",
 			},
 		})
 		return
@@ -188,8 +188,8 @@ func (h *Handler) DeleteSubscribe(c *gin.Context) {
 	if subscriptionID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_PATH_PARAMS,
-				"message":    "SubscriptionID is nil, please try again",
+				"errorCode": dto.ERR_INVALID_PATH_PARAMS,
+				"errorMsg":  "SubscriptionID is nil, please try again",
 			},
 		})
 		return
@@ -199,8 +199,8 @@ func (h *Handler) DeleteSubscribe(c *gin.Context) {
 	if userID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "AccessToken is nil, please try again",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "AccessToken is nil, please try again",
 			},
 		})
 		return
@@ -209,8 +209,8 @@ func (h *Handler) DeleteSubscribe(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "UserID is not an integer",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "UserID is not an integer",
 			},
 		})
 		return
@@ -223,8 +223,8 @@ func (h *Handler) DeleteSubscribe(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Invalid subscription_id, please try again",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Invalid subscription_id, please try again",
 			},
 		})
 		return
@@ -232,8 +232,8 @@ func (h *Handler) DeleteSubscribe(c *gin.Context) {
 	if sub.UserID != uint(uID) {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Invalid subscription_id, please try again",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Invalid subscription_id, please try again",
 			},
 		})
 		return
@@ -242,8 +242,8 @@ func (h *Handler) DeleteSubscribe(c *gin.Context) {
 	if err := h.Repo.DeleteSubscription(subscriptionID); err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    err.Error(),
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  err.Error(),
 			},
 		})
 		return
@@ -261,8 +261,8 @@ func (h *Handler) UpdateSubscribeCalendarID(c *gin.Context) {
 	if err := c.ShouldBindJSON(&subscribeReq); err != nil {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_REQUEST_BODY,
-				"message":    err.Error(),
+				"errorCode": dto.ERR_INVALID_REQUEST_BODY,
+				"errorMsg":  err.Error(),
 			},
 		})
 		return
@@ -272,8 +272,8 @@ func (h *Handler) UpdateSubscribeCalendarID(c *gin.Context) {
 	if subscriptionID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_PATH_PARAMS,
-				"message":    "SubscriptionID is nil, please try again",
+				"errorCode": dto.ERR_INVALID_PATH_PARAMS,
+				"errorMsg":  "SubscriptionID is nil, please try again",
 			},
 		})
 		return
@@ -283,8 +283,8 @@ func (h *Handler) UpdateSubscribeCalendarID(c *gin.Context) {
 	if userID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "AccessToken is nil, please try again",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "AccessToken is nil, please try again",
 			},
 		})
 		return
@@ -293,8 +293,8 @@ func (h *Handler) UpdateSubscribeCalendarID(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "UserID is not an integer",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "UserID is not an integer",
 			},
 		})
 		return
@@ -307,8 +307,8 @@ func (h *Handler) UpdateSubscribeCalendarID(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Invalid subscription_id, please try again",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Invalid subscription_id, please try again",
 			},
 		})
 		return
@@ -316,8 +316,8 @@ func (h *Handler) UpdateSubscribeCalendarID(c *gin.Context) {
 	if sub.UserID != uint(uID) {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Invalid subscription_id, please try again",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Invalid subscription_id, please try again",
 			},
 		})
 		return
@@ -327,8 +327,8 @@ func (h *Handler) UpdateSubscribeCalendarID(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "SubscriptionID is nil, please try again",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "SubscriptionID is nil, please try again",
 			},
 		})
 		return
@@ -338,8 +338,8 @@ func (h *Handler) UpdateSubscribeCalendarID(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Fetch subscription failed",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Fetch subscription failed",
 			},
 		})
 		return
@@ -355,8 +355,8 @@ func (h *Handler) SubscribedEvents(c *gin.Context) {
 	if userID == "" {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "AccessToken is nil, please try again",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "AccessToken is nil, please try again",
 			},
 		})
 		return
@@ -365,8 +365,8 @@ func (h *Handler) SubscribedEvents(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INVALID_ACCESS_TOKEN,
-				"message":    "UserID is not an integer",
+				"errorCode": dto.ERR_INVALID_ACCESS_TOKEN,
+				"errorMsg":  "UserID is not an integer",
 			},
 		})
 		return
@@ -376,8 +376,8 @@ func (h *Handler) SubscribedEvents(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"error": map[string]interface{}{
-				"error_code": dto.ERR_INTERNAL_SERVER_ERROR,
-				"message":    "Fetch subscription failed",
+				"errorCode": dto.ERR_INTERNAL_SERVER_ERROR,
+				"errorMsg":  "Fetch subscription failed",
 			},
 		})
 		return
